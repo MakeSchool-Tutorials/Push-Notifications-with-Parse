@@ -24,8 +24,7 @@ Now that we have the certificates set up, it is time to write some code! First o
 > [action]
 > Go to your AppDelegate.swift file and within the didFinishLaunchingWithOptions function, write this code:
 >
->		let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound)
->		let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+>		let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
 >       UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 >       UIApplication.sharedApplication().registerForRemoteNotifications()
 
@@ -38,7 +37,7 @@ As soon as the registerForRemoteNotifications function is called, the user gets 
 >
 >       func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 >           let installation = PFInstallation.currentInstallation()
->           installation["user"] = User.currentUser()
+>           installation["user"] = PFUser.currentUser()
 >           installation.setDeviceTokenFromData(deviceToken)
 >           installation.saveInBackground()
 >       }
@@ -69,7 +68,7 @@ The above nested if-statement simply checks if the app was launched because of a
 ​
 #How To Trigger A Push Notification
 
-In order to send a push notification, first we need to grab the PFInstallation for the receiving user. In order to do that, we will first query for that PHInstallation. Note that PFInstallations are just like other objects on the Parse backend. You will see a table of them appear on your project website when a PFInstallation object is created.
+In order to send a push notification, first we need to grab the PFInstallation for the receiving user. In order to do that, we will first query for that PFInstallation. Note that PFInstallations are just like other objects on the Parse backend. You will see a table of them appear on your project website when a PFInstallation object is created.
 ​
 > [action]
 > Querying a PFInstallation object is like querying any other object:
@@ -81,7 +80,7 @@ In order to send a push notification, first we need to grab the PFInstallation f
 >
 >       var push = PFPush()
 >       push.setQuery(pushQuery)
->       push.setMessage("New message from \(User.currentUser()!.username!)")
+>       push.setMessage("New message from \(PFUser.currentUser()!.username!)")
 >       push.sendPushInBackground()
 
 Once the above code runs, your friend should get a push notification on her device.
@@ -93,7 +92,7 @@ It is common to also increment the badge number on the app icon to indicate to t
 > [action]
 > Change your code to this:
 >
->       let data = ["alert" : "New message from \(User.currentUser()!.username!)", "badge" : "Increment"]
+>       let data = ["alert" : "New message from \(PFUser.currentUser()!.username!)", "badge" : "Increment"]
 >       let push = PFPush()
 >       push.setQuery(pushQuery)
 >       push.setData(data)
