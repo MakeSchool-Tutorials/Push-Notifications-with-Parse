@@ -3,7 +3,9 @@ title: "Push Notifications with Parse"
 slug: push-notifications-with-parse
 ---
 
-This guide will help you get started with push notifications and help you use it along with your Parse backend.
+In order to keep users engaged with your apps, it is helpful to send users messages while outside of your running apps.  Apple provides a mechanism to do this, and its called a push notification.  However, this requires some infrastructure (i.e., servers) and is a time consuming task when done with a small team.  Fortunately, Parse provides the infrastructure and has simplified the process of sending push notifications.
+
+This guide will help you get started with push notifications and help you use it along with your Parse backend.  So this assumes that the code will be added to an existing project with core Parse functionality implemented.  If you don't have a project with Parse implemented and are looking for a place to start, checkout our [Makestagram tutorial](https://www.makeschool.com/tutorials/build-a-photo-sharing-app-part-1/getting-started).  
 ​
 #What Is A Push Notification?
 
