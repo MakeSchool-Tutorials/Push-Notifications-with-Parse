@@ -13,7 +13,7 @@ You have most likely seen them before. They are the banners or alerts you see ap
 ​
 #How Do Push Notifications Work?
 
-When someone is sending a message to someone else, the backend receives this message and saves it in the database. In addition, the backend needs to notify the receiving user that there is a message for them to look at. In order to do that, your backend has to bundle a message for the receiving user and send it to Apple Push Notification Service (APNS). Once the APNS receives this bundle, it will send a push notification to the user's phone, and that is when they see a banner show up on their phone.
+When someone is sending a message to someone else, the backend receives this message and saves it in the database. In addition, the backend needs to notify the receiving user that there is a message for them to look at. In order to do that, your backend (or Parse) has to bundle a message for the receiving user and send it to Apple Push Notification Service (APNS). Once the APNS receives this bundle, it will send a push notification to the user's phone, and that is when they see a banner show up on their phone.
 ​
 #Let's Get Started
 
@@ -128,3 +128,7 @@ The above function will reset the badge number of the PFInstallation, and once t
 >		func applicationDidBecomeActive(application: UIApplication) {
 >        	clearBadges()
 >		}
+
+#Summary
+
+Push notifications are a necessary part of keeping users engaged in your apps.  Although difficult to implement from scratch, Parse offers a service that simplifies sending notifications.  After providing the APNS certificate to Parse, only a small amount of code needs to be added to an existing Parse enabled project.  This code registers the device for notifications, saves device information to Parse, sends notifications and manages recieved notifications.  Using push notifications effectively is a great way to increase user retention.  Happy coding!
