@@ -73,12 +73,12 @@ In order to send a push notification, first we need to grab the PFInstallation f
 > [action]
 > Querying a PFInstallation object is like querying any other object:
 >
->       var pushQuery = PFInstallation.query()!
+>       let pushQuery = PFInstallation.query()!
 >       pushQuery.whereKey("user", equalTo: friend) //friend is a PFUser object
 >
 > To actually send a push notification to that PFInstallation:
 >
->       var push = PFPush()
+>       let push = PFPush()
 >       push.setQuery(pushQuery)
 >       push.setMessage("New message from \(PFUser.currentUser()!.username!)")
 >       push.sendPushInBackground()
@@ -114,7 +114,8 @@ It is also necessary to reset the badge number to zero and make the badge icon d
 >	            else {
 >	                println("failed to clear badges")
 >	            }
->		}
+>         }
+>  		}
 
 
 The above function will reset the badge number of the PFInstallation, and once that succeeds, we reset the badge number locally so the badge icon disappears off the app icon.
@@ -123,5 +124,5 @@ The above function will reset the badge number of the PFInstallation, and once t
 > Call clearBadges() whenever your app becomes active:
 >
 >		func applicationDidBecomeActive(application: UIApplication) {
->        	self.clearBadges()
+>        	clearBadges()
 >		}
