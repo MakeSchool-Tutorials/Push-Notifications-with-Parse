@@ -7,19 +7,19 @@ In order to keep users engaged with your apps, it is helpful to send users messa
 
 This guide will help you get started with push notifications and help you use it along with your Parse backend.  So this assumes that the code will be added to an existing project with core Parse functionality implemented.  If you don't have a project with Parse implemented and are looking for a place to start, check out our [Makestagram tutorial](https://www.makeschool.com/tutorials/build-a-photo-sharing-app-part-1/getting-started).  
 ​
-#What Is A Push Notification?
+## What Is A Push Notification?
 
 You have most likely seen them before. They are the banners or alerts you see appear on your phone screen whenever someone messages you. Games even use them to notify you that you have won a game or it is your turn to play.
 ​
-#How Do Push Notifications Work?
+## How Do Push Notifications Work?
 
 When someone is sending a message to someone else, the backend receives this message and saves it in the database. In addition, the backend needs to notify the receiving user that there is a message for them to look at. In order to do that, your backend (or Parse) has to bundle a message for the receiving user and send it to Apple Push Notification Service (APNS). Once the APNS receives this bundle, it will send a push notification to the user's phone, and that is when they see a banner show up on their phone.
 ​
-#Let's Get Started
+## Let's Get Started
 
 First, we need to set up some certificates to allow our backend to talk to APNS securely and to make sure our backend is the only one able to send messages to APNS on our behalf. Please go to [Parse Push Notifications](https://parse.com/tutorials/ios-push-notifications) in order to get started with the certificates. Once you have reached step 5, please come back and continue this tutorial.
 ​
-#Registering User's Device For Push Notifications
+## Registering User's Device For Push Notifications
 
 Now that we have the certificates set up, it is time to write some code! First off, we need to ask the user for permission to send them notifications.
 ​
@@ -32,7 +32,7 @@ Now that we have the certificates set up, it is time to write some code! First o
 
 As soon as the registerForRemoteNotifications function is called, the user gets an alert to enable push notifications. If you have a login page, it is best to run the above code after the user has logged in for better user experience.
 ​
-#Providing Backend With Device Information
+## Providing Backend With Device Information
 ​
 > [action]
 > In your AppDelegate.swift, write this function:
@@ -46,7 +46,7 @@ As soon as the registerForRemoteNotifications function is called, the user gets 
 
 PFInstallation.currentInstallation() represents the current device. We save within it user's unique device token that is provided by the iOS to the app, which APNS will use to send push to the right device. We also save the current user within it to be able to distinguish the installation against other users' installations.
 ​
-#Getting App Ready To Receive Notifications
+## Getting App Ready To Receive Notifications
 ​
 > [action]
 > In your AppDelegate.swift, write this function:
@@ -68,7 +68,7 @@ If the app is active, the above function will be called to notify the app that a
 
 The above nested if-statement simply checks if the app was launched because of a notification, and if so, we call our didReceiveRemoteNotification function.
 ​
-#How To Trigger A Push Notification
+## How To Trigger A Push Notification
 
 In order to send a push notification, first we need to grab the PFInstallation for the receiving user. In order to do that, we will first query for that PFInstallation. Note that PFInstallations are just like other objects on the Parse backend. You will see a table of them appear on your project website when a PFInstallation object is created.
 ​
@@ -87,7 +87,7 @@ In order to send a push notification, first we need to grab the PFInstallation f
 
 Once the above code runs, your friend should get a push notification on her device.
 ​
-#Badges
+## Badges
 
 It is common to also increment the badge number on the app icon to indicate to the user that a message is waiting for them.
 ​
@@ -129,6 +129,6 @@ The above function will reset the badge number of the PFInstallation, and once t
 >        	clearBadges()
 >		}
 
-#Summary
+## Summary
 
 Push notifications are a necessary part of keeping users engaged in your apps.  Although difficult to implement from scratch, Parse offers a service that simplifies sending notifications.  After providing the APNS certificate to Parse, only a small amount of code needs to be added to an existing Parse enabled project.  This code registers the device for notifications, saves device information to Parse, sends notifications and manages recieved notifications.  Using push notifications effectively is a great way to increase user retention.  Happy coding!
